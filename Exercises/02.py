@@ -118,9 +118,37 @@ print(sumOfSquares(123))
 print(sumOfSquares(-12))
 
 
-# 02.8 Find an integer greater than 90 that can be written as a sum of squares 
+# 02.8 Find an integer greater than 90 that can be written as a sum of squares
+
+n = Int('n')
+a = Int('a')
+b = Int('b')
+
+c1 = And(a>0, b>0, n>90)
+c2 = n == a**2 + b**2
+s = Solver()
+s.add(c1,c2)
+if (s.check() == sat):
+    s.model()
+else:
+    None
+
 
 # 02.9 Find the smallest integer greater than 130 that can be written as a sum of squares
+
+n = Int('n')
+a = Int('a')
+b = Int('b')
+
+c1 = And(a>0, b>0, n>130)
+c2 = n == a**2 + b**2
+s = Solver()
+s.add(c1,c2)
+
+while check_and_print(s) == sat:
+    m = s.model()
+    s.add(n < m[n])  # look for a smaller solution
+
 
 # 02.10
 # Write a function that takes as input a positive integer n
