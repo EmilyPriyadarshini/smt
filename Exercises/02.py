@@ -78,27 +78,45 @@ print(f"\nCheck 3: \t{s2.check()}")
 # Write a function that takes as input an integer n
 # and finds positive integers a, b such that a**2 - b**2 = n.
 
+n = Int('n')
 a = Int('a')
 b = Int('b')
-n = Int('n')
 
 def diffOfSquares(n):
-    return Solver.model(a**2 - b**2 == n)
+    c1 = a**2 - b**2 == n
+    c2 = And(a>0, b>0)
+    s = Solver()
+    s.add(c1,c2)
+    if (s.check() == sat):
+        return s.model()
+    else:
+        return None
         
-#diffOfSquares(123)
+print(diffOfSquares(123))
 
 
 # 02.7
 # Write a function that takes as input an integer n
 # and finds positive integers a, b such that a**2 + b**2 = n.
-"""
-def sumOfSquares(n_input):
-.   ...
+
+n = Int('n')
+a = Int('a')
+b = Int('b')
+
+def sumOfSquares(n):
+    c1 = a**2 + b**2 == n
+    c2 = And(a>0, b>0)
+    s = Solver()
+    s.add(c1,c2)
+    if (s.check() == sat):
+        return s.model()
+    else:
+        return None
         
-sumOfSquares(123)
-sumOfSquares(12345)
-sumOfSquares(-12)
-"""
+print(sumOfSquares(123))
+#print(sumOfSquares(12345))     # Solver takes a lot of time to return an output
+print(sumOfSquares(-12))
+
 
 # 02.8 Find an integer greater than 90 that can be written as a sum of squares 
 
