@@ -4,7 +4,7 @@ from utils import *
 # Find Optimal values
 
 # 02.9 Find the smallest integer greater than 130 that can be written as a sum of squares
-#   x = a**2 + b**2
+#   n = a**2 + b**2
 
 n = Int('n')
 a = Int('a')
